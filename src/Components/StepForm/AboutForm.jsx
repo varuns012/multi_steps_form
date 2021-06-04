@@ -23,8 +23,8 @@ function AboutForm(props) {
   };
 
   const aboutFormNextHandle = () => {
-    if (name == "" || age == "" || selectedGender == "") {
-      message.error("Please fill remaing field first!");
+    if (selectedGender == "") {
+      message.error("Please select the gender first!");
     } else {
       navigation.next();
     }
@@ -32,49 +32,54 @@ function AboutForm(props) {
   return (
     <div className="container">
       <h1 className="heading">About</h1>
-      <div className="field_name">
-        <label>Name</label>
-        <Input
-          name="name"
-          value={name}
-          onChange={setForm}
-          placeholder="Enter your name"
-        />
-      </div>
 
-      <div className="field_name">
-        <label>Age</label>
-        <Input
-          name="age"
-          value={age}
-          onChange={setForm}
-          placeholder="Enter your age"
-          required={true}
-        />
-      </div>
-      <div className="field_name">
-        <label>Gender</label>
-        <Select
-          name="gender"
-          style={{ width: "300px" }}
-          placeholder="Select a option and change input text above"
-          onChange={onGenderChange}
-          allowClear
-          value={selectedGender}
-        >
-          {genderType.map((gen, key) => {
-            return (
-              <Option key={key} value={key}>
-                {gen}
-              </Option>
-            );
-          })}
-        </Select>
-      </div>
+      <Form onFinish={aboutFormNextHandle}>
+        <div className="field_name">
+          <label>Name</label>
+          <Input
+            name="name"
+            value={name}
+            onChange={setForm}
+            placeholder="Enter your name"
+            required
+          />
+        </div>
 
-      <Button className="nxt_btn" type="primary" onClick={aboutFormNextHandle}>
+        <div className="field_name">
+          <label>Age</label>
+          <Input
+            name="age"
+            value={age}
+            onChange={setForm}
+            placeholder="Enter your age"
+            required
+          />
+        </div>
+        <div className="field_name">
+          <label>Gender</label>
+          <Select
+            name="gender"
+            style={{ width: "300px" }}
+            placeholder="Select a option and change input text above"
+            onChange={onGenderChange}
+            allowClear
+            value={selectedGender}
+          >
+            {genderType.map((gen, key) => {
+              return (
+                <Option key={key} value={key}>
+                  {gen}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <Button className="nxt_btn" type="primary" htmlType="submit" >
         Next
       </Button>
+      </Form>
+
+     
     </div>
   );
 }

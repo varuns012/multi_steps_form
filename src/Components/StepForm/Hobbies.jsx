@@ -7,18 +7,16 @@ import "./StepsForm.css";
 function Hobbies(props) {
   const {
     formData,
-    setForm,
     navigation,
     setSelectedHobbies,
     hobbiesType,
     selectedHobbies,
     selectedGender,
+    setCustomHobInput,
+    customHobInput,
+    setCustomHobbies,
+    customHobbies
   } = props;
-
-  const { hobbies } = formData;
-
-  const [customHobbies, setCustomHobbies] = useState(false);
-  const [customHobInput, setCustomHobInput] = useState("");
 
   const formsData = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -35,9 +33,9 @@ function Hobbies(props) {
       streettwo: formData.streettwo,
       phone: formData.phone,
       email: formData.email,
-      hobbies: selectedHobbies,
+      hobbies: customHobInput || selectedHobbies,
     };
-    if (selectedHobbies == "") {
+    if (customHobbies ===  false && selectedHobbies == "") {
       message.error("Please select the option first!");
     } else {
       dispatch({ type: "SAVE_FORMS", payload: data });
@@ -55,9 +53,7 @@ function Hobbies(props) {
   };
 
   const saveCustomHobHandle = () => {
-    setCustomHobbies(false);
-    hobbiesType.push(customHobInput);
-    message.success(`You selected ${customHobInput}`);
+    message.success(`Your selected ${customHobInput}`);
   };
 
   const hobbiesMenuHandle = ({ key }) => {
@@ -76,18 +72,7 @@ function Hobbies(props) {
       })}
       <Menu.Divider />
       <Button onClick={customHobbiesHandle}>Other Hobbies</Button>
-      {customHobbies ? (
-        <>
-          <Input
-            type="text"
-            onChange={otherHobbies}
-            placeholder="Enter your hobbies"
-          />
-          <Button type="primary" onClick={saveCustomHobHandle}>
-            Add
-          </Button>
-        </>
-      ) : null}
+     
     </Menu>
   );
 
@@ -99,6 +84,19 @@ function Hobbies(props) {
           Your Hobbies <DownOutlined />
         </a>
       </Dropdown>
+      {customHobbies ? (
+        <>
+          <Input
+          className="add_hob"
+            type="text"
+            onChange={otherHobbies}
+            placeholder="Enter your hobbies"
+          />
+          <Button className="add_hob_btn" type="primary" onClick={saveCustomHobHandle}>
+            Add
+          </Button>
+        </>
+      ) : null}
       <div>
         <Button
           className="prev_btn"

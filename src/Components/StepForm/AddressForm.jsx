@@ -1,4 +1,4 @@
-import { Input, Select, Form, Button, message } from "antd";
+import { Input, Form, Button, message } from "antd";
 import React from "react";
 import "./StepsForm.css";
 
@@ -25,53 +25,67 @@ function AddressForm(props) {
   return (
     <div className="container">
       <h1 className="heading address_type_title">Primary Address</h1>
-      <div className="field_name">
-        <label>Address One</label>
-        <Input
-          name="addressone"
-          value={addressone}
-          onChange={setForm}
-          placeholder="Enter your address"
-        />
-      </div>
+      <Form onFinish={addressFormNextHandle}>
+        <div className="field_name">
+          <label>Address One</label>
+          <Input
+            name="addressone"
+            value={addressone}
+            onChange={setForm}
+            placeholder="Enter your address"
+            required
+          />
+        </div>
 
-      <div className="field_name">
-        <label>Street Number</label>
-        <Input
-          name="streetone"
-          value={streetone}
-          onChange={setForm}
-          placeholder="Enter your street number"
-        />
-      </div>
-      <h className="heading address_type_title">Secondary Address</h>
+        <div className="field_name">
+          <label>Street Number</label>
+          <Input
+            name="streetone"
+            value={streetone}
+            onChange={setForm}
+            placeholder="Enter your street number"
+            required
+          />
+        </div>
+        <h className="heading address_type_title">Secondary Address</h>
 
-      <div className="field_name">
-        <label>Address Two</label>
-        <Input
-          name="addresstwo"
-          value={addresstwo}
-          onChange={setForm}
-          placeholder="Enter your address"
-        />
-      </div>
+        <div className="field_name">
+          <label>Address Two</label>
+          <Input
+            name="addresstwo"
+            value={addresstwo}
+            onChange={setForm}
+            placeholder="Enter your address"
+            required
+          />
+        </div>
 
-      <div className="field_name">
-        <label>Street Number</label>
-        <Input
-          name="streettwo"
-          value={streettwo}
-          onChange={setForm}
-          placeholder="Enter your street number"
-        />
-      </div>
+        <div className="field_name">
+          <label>Street Number</label>
+          <Input
+            name="streettwo"
+            value={streettwo}
+            onChange={setForm}
+            placeholder="Enter your street number"
+            required
+          />
+        </div>
 
-      <Button className="prev_btn" onClick={addressFormPrevHandle} type="primary">
-        Previous
-      </Button>
-      <Button className="nxt_btn" onClick={addressFormNextHandle} type="primary">
-        Next
-      </Button>
+        <Button
+          className="prev_btn"
+          onClick={addressFormPrevHandle}
+          type="primary"
+        >
+          Previous
+        </Button>
+        <Button
+          className="nxt_btn"
+          type="primary"
+          htmlType="submit"
+        >
+          Next
+        </Button>
+      </Form>
     </div>
   );
 }

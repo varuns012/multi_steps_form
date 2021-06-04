@@ -57,6 +57,15 @@ input.ant-input {
     top: 6px;
 }
 
+.add_hob {
+    margin-top: 20px;
+    width: 270px!important;
+}
+
+.add_hob_btn {
+    width: 180px;
+}
+
 .done_icon {
     margin-left: 10px;
 }

@@ -9,14 +9,12 @@ import Hobbies from './StepForm/Hobbies';
 const defaultData = {
     name: '',
     age: '',
-    // gender: '',
     addressone: '',
     streetone: '',
     addresstwo:'',
     streettwo: '',
     phone:'',
     email:'',
-    // hobbies: ''
 }
 const steps = [
     {id: "about" },
@@ -32,6 +30,9 @@ function MultiStepsForm() {
     const [hobbiesType, setHobbiesType] = useState(["Cricket", "BattlegroundGames", "Outing", "food"])
     const [selectedGender, setSelectedGender] = useState("")
     const [selectedHobbies, setSelectedHobbies] = useState("")
+    const [customHobbies, setCustomHobbies] = useState(false);
+    const [customHobInput, setCustomHobInput] = useState("");
+
 
     const { step, navigation } = useStep({
         steps,
@@ -49,6 +50,10 @@ function MultiStepsForm() {
       setSelectedHobbies,
       hobbiesType,
       selectedHobbies,
+      setCustomHobInput,
+      customHobInput,
+      customHobbies,
+      setCustomHobbies
     };
 
     switch (step.id) {

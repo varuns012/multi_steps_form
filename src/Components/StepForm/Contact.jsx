@@ -1,4 +1,4 @@
-import { Button, Input, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import React from "react";
 import "./StepsForm.css";
 
@@ -22,33 +22,43 @@ function Contact(props) {
   return (
     <div className="container">
       <h1 className="heading">Contact</h1>
-      <div className="field_name">
-        <label>Phone</label>
-        <Input
-          required="true"
-          name="phone"
-          value={phone}
-          onChange={setForm}
-          placeholder="Enter your phone number"
-        />
-      </div>
+      <Form onFinish={contactFormNextHandle}>
+        <div className="field_name">
+          <label>Phone</label>
+          <Input
+            required="true"
+            name="phone"
+            value={phone}
+            onChange={setForm}
+            placeholder="Enter your phone number"
+          />
+        </div>
 
-      <div className="field_name">
-        <label>Email</label>
-        <Input
-          name="email"
-          value={email}
-          onChange={setForm}
-          placeholder="Enter your email"
-        />
-      </div>
+        <div className="field_name">
+          <label>Email</label>
+          <Input
+            name="email"
+            value={email}
+            onChange={setForm}
+            placeholder="Enter your email"
+          />
+        </div>
 
-      <Button className="prev_btn" onClick={contactFormPrevHandle} type="primary">
-        Previous
-      </Button>
-      <Button className="nxt_btn" onClick={contactFormNextHandle} type="primary">
-        Next
-      </Button>
+        <Button
+          className="prev_btn"
+          onClick={contactFormPrevHandle}
+          type="primary"
+        >
+          Previous
+        </Button>
+        <Button
+          className="nxt_btn"
+          type="primary"
+          htmlType="submit"
+        >
+          Next
+        </Button>
+      </Form>
     </div>
   );
 }
